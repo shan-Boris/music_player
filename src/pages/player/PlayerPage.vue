@@ -6,7 +6,7 @@
       <div class="player__box">
         <audio
           ref="audio"
-          :src="activeAudioUrl"
+          :src="`audio/${activeTrack.file}`"
           @timeupdate="updateProgress"
           @canplay="autoPlay"
           @ended="setTrack('next', true)"
@@ -18,8 +18,8 @@
             player__cover_animationPause: !isPlay,
             player__cover_animationReset: isAnimationReset,
           }"
-          :src="activeCoverUrl"
-          :alt="activeTrackName"
+          :src="`covers/${activeTrack.cover}`"
+          :alt="activeTrack.name"
         />
 
         <div class="content">
@@ -72,7 +72,7 @@
             />
           </div>
 
-          <div class="content__title" v-text="activeTrackName" />
+          <div class="content__title" v-text="activeTrack.name" />
 
           <div class="content__progressBar">
             <SliderBar
@@ -108,15 +108,9 @@ const autoStart = ref(false);
 const isAnimationReset = ref(false);
 const activeIndTrack = ref(0);
 
-// const getLinkOnSrc = (path: string) => path;
+const activeTrack = computed(() => TRACKS[activeIndTrack.value]);
 
-const activeAudioUrl = computed(() => TRACKS[activeIndTrack.value].file);
-
-const activeCoverUrl = computed(() => TRACKS[activeIndTrack.value].cover);
-
-const activeTrackName = computed(() => TRACKS[activeIndTrack.value].name);
-
-const playBtn: TPlayBtn = computed(() =>
+const playBtn = computed<TPlayBtn>(() =>
   isPlay.value
     ? { icon: pauseBtnIcon, title: "Пауза" }
     : { icon: playBtnIcon, title: "Play" }

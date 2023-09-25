@@ -17,13 +17,17 @@
 
 <script setup lang="ts">
 import PlayerPage from "@/pages/player/PlayerPage.vue";
-import { Ref, ref } from "vue";
+import { ref } from "vue";
 
-type TClick = Ref<{
+type TClick = {
   active: boolean;
   style: { left: string; top: string };
-}>;
-const clickInfo: TClick = ref({ active: false, style: { left: "", top: "" } });
+};
+
+const clickInfo = ref<TClick>({
+  active: false,
+  style: { left: "", top: "" },
+});
 
 const showClickImg = (e: MouseEvent) => {
   const clickPlace = {
@@ -42,15 +46,6 @@ const hideClickImg = () => {
 </script>
 
 <style lang="scss">
-#app {
-  text-align: center;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-}
-
 #clickImg {
   position: absolute;
   width: 3%;

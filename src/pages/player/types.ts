@@ -1,5 +1,3 @@
-import { ComputedRef } from "vue";
-
 export type TAudioTarget = EventTarget & {
   duration: number | false;
   currentTime: number;
@@ -10,7 +8,7 @@ export type TSetTrack = (
   playNext?: boolean
 ) => void;
 
-export type TPlayBtn = ComputedRef<{
+export type TPlayBtn = {
   icon: string;
   title: string;
-}>;
+};
