@@ -108,15 +108,11 @@ const autoStart = ref(false);
 const isAnimationReset = ref(false);
 const activeIndTrack = ref(0);
 
-const getLinkOnSrc = (path: string) => new URL(path, import.meta.url).href;
+// const getLinkOnSrc = (path: string) => path;
 
-const activeAudioUrl = computed(() =>
-  getLinkOnSrc(`../../assets/audio/${TRACKS[activeIndTrack.value].file}`)
-);
+const activeAudioUrl = computed(() => TRACKS[activeIndTrack.value].file);
 
-const activeCoverUrl = computed(() =>
-  getLinkOnSrc(`../../assets/covers/${TRACKS[activeIndTrack.value].cover}`)
-);
+const activeCoverUrl = computed(() => TRACKS[activeIndTrack.value].cover);
 
 const activeTrackName = computed(() => TRACKS[activeIndTrack.value].name);
 
